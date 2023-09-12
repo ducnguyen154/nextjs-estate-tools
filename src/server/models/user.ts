@@ -1,11 +1,8 @@
 import { DataTypes, type Sequelize } from "sequelize";
 
-const house = (sequelize: Sequelize) => {
-  return sequelize.define("houses", {
-    title: {
-      type: DataTypes.STRING,
-    },
-    description: {
+const User = (sequelize: Sequelize) => {
+  return sequelize.define("users", {
+    name: {
       type: DataTypes.STRING,
     },
     createdAt: {
@@ -19,5 +16,4 @@ const house = (sequelize: Sequelize) => {
   });
 };
 
-export default house;
-
+export default User;

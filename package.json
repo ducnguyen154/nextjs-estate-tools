@@ -30,7 +30,7 @@
     "npm": "^9.x"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.6",
     "env-cmd": "^10.1.0"
   }
 }
-

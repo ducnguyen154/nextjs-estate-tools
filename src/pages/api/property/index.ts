@@ -1,22 +1,21 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from "next";
 import { createRouter } from "next-connect";
-import { House } from "@server/models";
+
+import { property as Property } from "@server/models";
 
 const router = createRouter<NextApiRequest, NextApiResponse>();
 
 router.get(async (req: NextApiRequest, res: NextApiResponse) => {
-  const houseId = req.query.id;
-  const house = await House.findByPk(houseId as string);
-
-  res.json({ status: "OK", house });
+  // TODO
+  const property = await Property.findAll();
+  res.json({ error: false, property });
 });
 
-router.put(async (req: NextApiRequest, res: NextApiResponse) => {
-  const id = req.query.id;
+router.post(async (req: NextApiRequest, res: NextApiResponse) => {
   const body = req.body;
+  const property = await Property.create(body);
 
-  await House.update(body, { where: { id } });
-  res.json({ status: "OK" });
+  res.json({ property });
 });
 
 export default router.handler({
@@ -26,4 +25,3 @@ export default router.handler({
     res.status(500).end(err.message);
   },
 });
-
