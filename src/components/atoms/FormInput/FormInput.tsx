@@ -6,7 +6,7 @@ type FormInputProps = {
   placeholder?: string;
   name?: string;
   defaultValue?: string | number;
-  onChange?: (...agrs: any[]) => void;
+  onChange?: (...args: any[]) => void;
 };
 
 const FormInput: React.FC<FormInputProps> = ({

@@ -11,7 +11,7 @@ type FormSelectProps = {
   options: optionsProps[];
   isBlankFirst?: boolean;
   blankText?: string;
-  onChange?: (...agrs: any[]) => void;
+  onChange?: (...args: any[]) => void;
 };
 
 const FormSelect: React.FC<FormSelectProps> = ({

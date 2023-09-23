@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-import PcPropertyBookingTempalte from "@/components/templates/PropertyTemplate/PcPropertyBookingTemplate";
+import PcPropertyBookingTemplate from "@/components/templates/PropertyTemplate/PcPropertyBookingTemplate";
 
 const PropertyBookingPage: React.FC = () => {
   const router = useRouter();
   const { id } = router.query;
   const bookingData = {
-    propertyid: id,
+    propertyId: id,
   };
   const [properties, setProperties] = useState([]);
   const [users, setUsers] = useState([]);
@@ -27,7 +27,7 @@ const PropertyBookingPage: React.FC = () => {
   });
   return (
     <div className="container mx-auto px-4">
-      <PcPropertyBookingTempalte properties={[]} users={[]} />
+      <PcPropertyBookingTemplate properties={properties} users={users} />
     </div>
   );
 };

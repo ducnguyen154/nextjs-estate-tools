@@ -5,7 +5,7 @@ type FormTextProps = {
   placeholder?: string;
   defaultValue?: string;
   name?: string;
-  onChange?: (...agrs: any[]) => void;
+  onChange?: (...args: any[]) => void;
 };
 
 const FormText: React.FC<FormTextProps> = ({

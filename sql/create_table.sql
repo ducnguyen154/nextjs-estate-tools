@@ -19,7 +19,7 @@ CREATE TABLE properties (
   id INT(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'auto increment id',
   title VARCHAR(1000) NOT NULL COMMENT 'house title',
   `description` TEXT NULL DEFAULT NULL COMMENT 'description',
-  `address` VARCHAR(1000) NOT NULL COMMENT 'property/aparment address',
+  `address` VARCHAR(1000) NOT NULL COMMENT 'property/apartment address',
   landlord_id INT(11) unsigned NOT NULL COMMENT 'refer to landlord table',
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import PcLandlordForm from "./PcLandlordForm";
 
 const meta: Meta<typeof PcLandlordForm> = {
-  title: "PC/molecules/LandlorForm",
+  title: "PC/molecules/LandlordForm",
   component: PcLandlordForm,
 };
 export default meta;

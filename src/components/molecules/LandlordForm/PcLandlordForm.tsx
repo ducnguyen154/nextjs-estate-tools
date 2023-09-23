@@ -1,17 +1,11 @@
 import React, { useState } from "react";
 import FormInput from "@/components/atoms/FormInput/FormInput";
 import FormText from "@/components/atoms/FormText/FormText";
-
-type LandlordProp = {
-  name?: string;
-  mobile?: string;
-  email?: string;
-  notes?: string;
-};
+import Button from "@/components/atoms/Button/Button";
 
 type LandlordFormProps = {
-  data?: LandlordProp;
-  onSubmit?: (...agrs: any[]) => void;
+  data?: LandlordItem;
+  onSubmit?: (...args: any) => void;
 };
 
 const PcLandlordForm: React.FC<LandlordFormProps> = ({
@@ -74,12 +68,12 @@ const PcLandlordForm: React.FC<LandlordFormProps> = ({
           />
         </label>
         <div className="block">
-          <button
-            className="mt-1 block px-5 py-2 rounded-md border-gray-300 bg-sky-700 hover:bg-sky-600 active:bg-sky-700 text-white shadow-md"
+          <Button
+            type="primary"
+            text="Save"
+            className="mt-1"
             onClick={submitHandler}
-          >
-            Save
-          </button>
+          />
         </div>
       </div>
     </>

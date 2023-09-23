@@ -22,7 +22,7 @@ type PcPropertyRentFormProps = {
   data?: rentDataType;
   properties: optionType[];
   users: optionType[];
-  onSubmit?: (...agrs: any[]) => void;
+  onSubmit?: (...args: any[]) => void;
 };
 
 const PcPropertyRentForm: React.FC<PcPropertyRentFormProps> = ({
@@ -95,7 +95,7 @@ const PcPropertyRentForm: React.FC<PcPropertyRentFormProps> = ({
         />
       </label>
       <label className="block">
-        <span className="text-gray-700">Rentor</span>
+        <span className="text-gray-700">Renter</span>
         <FormSelect
           options={users}
           name="userId"
