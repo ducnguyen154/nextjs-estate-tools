@@ -1,5 +1,8 @@
 import { Sequelize } from "sequelize";
-import house from "./house";
+import Property from "./property";
+import Landlord from "./landlord";
+import User from "./user";
+import Rent from "./rent";
 
 const {
   DATABASE = "",
@@ -20,5 +23,7 @@ export const sequelize = new Sequelize(
   }
 );
 
-export const House = house(sequelize);
-
+export const property = Property(sequelize);
+export const landlord = Landlord(sequelize);
+export const user = User(sequelize);
+export const rent = Rent(sequelize);
