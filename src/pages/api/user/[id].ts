@@ -9,14 +9,14 @@ router.get(async (req: NextApiRequest, res: NextApiResponse) => {
   const { id } = req.query;
   const user = await User.findByPk(id as string);
 
-  res.json(user);
+  res.json({ user });
 });
 
 router.put(async (req: NextApiRequest, res: NextApiResponse) => {
   const { id } = req.query;
-  const body = req.body;
+  const { user } = req.body;
 
-  await User.update(body, { where: { id } });
+  await User.update(user, { where: { id } });
   res.status(204).end();
 });
 

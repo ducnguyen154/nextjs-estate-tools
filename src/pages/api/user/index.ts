@@ -10,10 +10,11 @@ router.get(async (req: NextApiRequest, res: NextApiResponse) => {
   res.json({ users });
 });
 
-router.get(async (req: NextApiRequest, res: NextApiResponse) => {
+router.post(async (req: NextApiRequest, res: NextApiResponse) => {
   // TODO validate
-  const { users } = req.body;
-  await User.create(users);
+  const { user } = req.body;
+  console.log(user);
+  await User.create(user);
   res.status(201).end();
 });
 
