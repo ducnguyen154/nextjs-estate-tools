@@ -3,12 +3,12 @@ import FormInput from "@/components/atoms/FormInput/FormInput";
 import FormText from "@/components/atoms/FormText/FormText";
 import Button from "@/components/atoms/Button/Button";
 
-type LandlordFormProps = {
-  data?: LandlordItem;
+type UserFormProps = {
+  data?: UserInfo | UserItem;
   onSubmit?: (...args: any) => void;
 };
 
-const PcLandlordForm: React.FC<LandlordFormProps> = ({
+const PcUserForm: React.FC<UserFormProps> = ({
   data = {},
   onSubmit = () => {},
 }) => {
@@ -62,7 +62,7 @@ const PcLandlordForm: React.FC<LandlordFormProps> = ({
         <label className="block">
           <span className="text-gray-700">Notes</span>
           <FormText
-            name="notes"
+            name="note"
             defaultValue={defaultData.note}
             onChange={(event) => setNotes(event.target.value)}
           />
@@ -80,4 +80,4 @@ const PcLandlordForm: React.FC<LandlordFormProps> = ({
   );
 };
 
-export default PcLandlordForm;
+export default PcUserForm;

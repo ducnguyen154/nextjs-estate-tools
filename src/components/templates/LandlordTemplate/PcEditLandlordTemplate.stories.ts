@@ -17,7 +17,7 @@ export const Primary: Story = {
       name: "Landlord Name",
       mobile: "09090909xx",
       email: "main@mail.com",
-      notes: "",
+      note: "",
     },
   },
 };

@@ -3,5 +3,5 @@ interface LandlordItem {
   name: string;
   mobile: string;
   email?: string;
-  notes?: string;
+  note?: string;
 }

@@ -5,6 +5,15 @@ const User = (sequelize: Sequelize) => {
     name: {
       type: DataTypes.STRING,
     },
+    email: {
+      type: DataTypes.STRING,
+    },
+    mobile: {
+      type: DataTypes.STRING,
+    },
+    note: {
+      type: DataTypes.STRING,
+    },
     createdAt: {
       type: DataTypes.DATE,
       field: "created_at",

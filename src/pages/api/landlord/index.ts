@@ -13,7 +13,6 @@ router.get(async (req: NextApiRequest, res: NextApiResponse) => {
 
 router.post(async (req: NextApiRequest, res: NextApiResponse) => {
   const { landlord } = req.body;
-  console.log(landlord);
   const result = await Landlord.create(landlord);
 
   res.json({ result });
