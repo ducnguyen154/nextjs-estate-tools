@@ -22,6 +22,7 @@ const FormSelect: React.FC<FormSelectProps> = ({
   blankText = "Please select one",
   onChange = () => {},
 }) => {
+  console.log(defaultValue);
   const renderOptions = options.map((option, i) => (
     <option key={i} value={option.value as string}>
       {option.text}

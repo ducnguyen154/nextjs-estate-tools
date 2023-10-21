@@ -13,9 +13,9 @@ router.get(async (req: NextApiRequest, res: NextApiResponse) => {
 
 router.put(async (req: NextApiRequest, res: NextApiResponse) => {
   const { id } = req.query;
-  const body = req.body;
+  const { property } = req.body;
 
-  await Property.update(body, { where: { id } });
+  await Property.update(property, { where: { id } });
   res.json({ status: "OK" });
 });
 

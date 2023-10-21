@@ -1,24 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import PcPropertyListTemplate from "@/components/templates/PropertyTemplate/PcPropertyListTemplate";
+import { useQuery } from "react-query";
+import { fetchProperties } from "@/adapters/property";
 
 const HousePage: React.FC = () => {
-  const [properties, setProperties] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const {
+    data: properties,
+    isLoading,
+    isError,
+  } = useQuery("properties", () => fetchProperties());
 
-  useEffect(() => {
-    fetch("/api/property")
-      .then((res) => res.json())
-      .then((data) => {
-        setProperties(data.properties);
-        setIsLoading(false);
-      });
-  });
+  if (isError) return <p>Something wrong...</p>;
+  if (isLoading) return <p>Loading...</p>;
+  if (!properties) return <p>Not found.</p>;
 
   if (isLoading) return <p>Loading...</p>;
   return (
     <div className="container mx-auto px-4">
-      <h1 className="text-xl mb-4">Property List</h1>
       <PcPropertyListTemplate properties={properties} />
     </div>
   );
