@@ -1,13 +1,17 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { createRouter } from "next-connect";
 
-import { landlord as Landlord } from "@server/models";
+import {Landlord} from "@/server/models/Landlord";
 
 const router = createRouter<NextApiRequest, NextApiResponse>();
 
 router.get(async (req: NextApiRequest, res: NextApiResponse) => {
   // TODO
-  const landlords = await Landlord.findAll();
+  const { count, rows } = await Landlord.findAndCountAll();
+  const landlords = rows.map(row => ({
+    id: row.id,
+    name: row.name,
+  }))
   res.json({ error: false, landlords });
 });
 

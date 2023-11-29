@@ -1,7 +1,34 @@
-import { DataTypes, type Sequelize } from "sequelize";
+import {
+  CreationOptional,
+  DataTypes,
+  InferAttributes,
+  InferCreationAttributes,
+  Model,
+} from "sequelize";
 
-const User = (sequelize: Sequelize) => {
-  return sequelize.define("users", {
+import { sequelize } from "../sequelize";
+
+// import { DataTypes, type Sequelize } from "sequelize";
+export class User extends Model<
+  InferAttributes<User>,
+  InferCreationAttributes<User>
+> {
+  declare id: CreationOptional<number>;
+  declare name: string;
+  declare email: string;
+  declare mobile: string;
+  declare note: string;
+  declare createdAt: CreationOptional<Date>;
+  declare updatedAt: CreationOptional<Date>;
+}
+
+User.init(
+  {
+    id: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      autoIncrement: true,
+      primaryKey: true,
+    },
     name: {
       type: DataTypes.STRING,
     },
@@ -22,7 +49,6 @@ const User = (sequelize: Sequelize) => {
       type: DataTypes.DATE,
       field: "updated_at",
     },
-  });
-};
-
-export default User;
+  },
+  { sequelize, modelName: "User", tableName: "users" }
+);

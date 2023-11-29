@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { createRouter } from "next-connect";
-
-import { rent as Rent } from "@server/models";
+import { Rent } from "@/server/models";
 
 const router = createRouter<NextApiRequest, NextApiResponse>();
 

@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { createRouter } from "next-connect";
-import { landlord as Landlord } from "@server/models";
+import { Landlord } from "@/server/models";
 
 const router = createRouter<NextApiRequest, NextApiResponse>();
 

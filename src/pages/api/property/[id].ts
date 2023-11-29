@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { createRouter } from "next-connect";
-import { property as Property } from "@server/models";
+import { Property } from "@/server/models";
 
 const router = createRouter<NextApiRequest, NextApiResponse>();
 

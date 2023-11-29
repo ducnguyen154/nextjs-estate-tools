@@ -1,8 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { createRouter } from "next-connect";
 
-import { property as Property } from "@server/models";
-import { landlord as Landlord } from "@server/models";
+import { Property, Landlord } from "@/server/models";
 
 const router = createRouter<NextApiRequest, NextApiResponse>();
 
@@ -13,7 +12,8 @@ router.get(async (req: NextApiRequest, res: NextApiResponse) => {
   const where = {};
   const { count, rows } = await Property.findAndCountAll({
     attributes: ["id", "title", "description", "address", "landlordId"],
-    include: [{ model: Landlord, attributes: ["name", "email", "mobile"] }],
+    // include: [Landlord.associations.properties],
+    // include: [{ model: Landlord, attributes: ["name", "email", "mobile"] }],
     where,
     offset,
     limit,
@@ -21,22 +21,20 @@ router.get(async (req: NextApiRequest, res: NextApiResponse) => {
   });
 
   if (!count) {
-    return { resultSet: { offset, limit, total: 0 } };
+    return res.json({ resultSet: { offset, limit, total: 0 } });
   }
-
-  console.log(rows);
 
   res.json({
     resultSet: { offset, limit, total: count },
     properties: rows.map((row) => ({
-      id: row["id"],
+      id: row.id,
       title: row.title,
       description: row.description,
       address: row.address,
-      landlordId: row.landlordId,
-      landlordName: row["landlord.name"],
-      landlordEmail: row["landlord.email"],
-      landlordMobile: row["landlord.mobile"],
+      // landlordId: row.landlordId,
+      // landlordName: row["landlord.name"],
+      // landlordEmail: row["landlord.email"],
+      // landlordMobile: row["landlord.mobile"],
     })),
   });
 });

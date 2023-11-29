@@ -1,19 +1,41 @@
-import { DataTypes, type Sequelize } from "sequelize";
-import User from "./user";
-import Landlord from "./landlord";
-import Property from "./property";
+// import { DataTypes, type Sequelize } from "sequelize";
+import {
+  CreationOptional,
+  DataTypes,
+  ForeignKey,
+  InferAttributes,
+  InferCreationAttributes,
+  Model,
+  NonAttribute,
+} from "sequelize";
+import { User } from "./User";
+import { Property } from "./Property";
+import { sequelize } from "../sequelize";
 
-const Rent = (sequelize: Sequelize) => {
-  const rent = sequelize.define("rents", {
-    userId: {
-      type: DataTypes.INTEGER,
-      field: "user_id",
-      allowNull: false,
-    },
-    propertyId: {
-      type: DataTypes.INTEGER,
-      field: "property_id",
-      allowNull: false,
+export class Rent extends Model<
+  InferAttributes<Rent>,
+  InferCreationAttributes<Rent>
+> {
+  declare id: CreationOptional<number>;
+  declare userId: ForeignKey<User["id"]>;
+  declare propertyId: ForeignKey<Property["id"]>;
+  declare price: number;
+  declare startDate: Date;
+  declare endDate: Date;
+  declare description: string;
+  declare createdAt: CreationOptional<Date>;
+  declare updatedAt: CreationOptional<Date>;
+
+  declare user?: NonAttribute<User>;
+  declare property?: NonAttribute<Property>;
+}
+
+Rent.init(
+  {
+    id: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      autoIncrement: true,
+      primaryKey: true,
     },
     price: {
       type: DataTypes.FLOAT,
@@ -37,15 +59,6 @@ const Rent = (sequelize: Sequelize) => {
       type: DataTypes.DATE,
       field: "updated_at",
     },
-  });
-
-  const user = User(sequelize);
-  const property = Property(sequelize);
-
-  rent.belongsTo(user, { foreignKey: "userId" });
-  rent.belongsTo(property, { foreignKey: "propertyId" });
-
-  return rent;
-};
-
-export default Rent;
+  },
+  { sequelize, modelName: "Rent", tableName: "rents" }
+);

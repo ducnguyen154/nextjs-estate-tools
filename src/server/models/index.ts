@@ -1,29 +1,23 @@
-import { Sequelize } from "sequelize";
-import Property from "./property";
-import Landlord from "./landlord";
-import User from "./user";
-import Rent from "./rent";
+import { Landlord } from "./Landlord";
+import { Property } from "./Property";
+import { User } from "./User";
+import { Rent } from "./Rent";
 
-const {
-  DATABASE = "",
-  DB_HOST = "",
-  DB_PORT = 3306,
-  DB_USERNAME = "",
-  DB_PASSWORD = "",
-} = process.env;
+Landlord.hasMany(Property, {
+  sourceKey: "id",
+  foreignKey: "landlordId",
+});
 
-export const sequelize = new Sequelize(
-  DATABASE, // database
-  DB_USERNAME, // username
-  DB_PASSWORD, // password
-  {
-    host: DB_HOST,
-    port: DB_PORT as number,
-    dialect: "mysql",
-  }
-);
+Property.hasMany(Rent, {
+  sourceKey: "id",
+  foreignKey: "propertyId",
+  as: "rents",
+});
 
-export const property = Property(sequelize);
-export const landlord = Landlord(sequelize);
-export const user = User(sequelize);
-export const rent = Rent(sequelize);
+User.hasMany(Rent, {
+  sourceKey: "id",
+  foreignKey: "userId",
+  as: "rents",
+});
+
+export { Landlord, Property, User, Rent };
