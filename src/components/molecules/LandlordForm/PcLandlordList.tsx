@@ -23,13 +23,13 @@ const PcLandlordList: React.FC<PcLandlordListProps> = ({ landlords }) => {
         >
           Edit
         </Link>
-        <Link
+        {/* <Link
           className="ml-2 underline"
           href={`/landlord/${landlord.id}/booking`}
           title="Booking"
         >
           Booking
-        </Link>
+        </Link> */}
       </td>
     </tr>
   ));

@@ -21,6 +21,7 @@ const PcLandlordForm: React.FC<LandlordFormProps> = ({
     },
     ...data,
   };
+  console.log(defaultData);
   const [name, setName] = useState(defaultData.name);
   const [mobile, setMobile] = useState(defaultData.mobile);
   const [email, setEmail] = useState(defaultData.email);

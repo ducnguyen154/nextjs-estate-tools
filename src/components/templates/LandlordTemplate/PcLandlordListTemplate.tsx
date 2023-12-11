@@ -4,11 +4,13 @@ import PcLandlordList from "@/components/molecules/LandlordForm/PcLandlordList";
 import Link from "next/link";
 
 type PcLandlordListProps = {
+  resultSet: ResultSet; // TODO processing to pagination
   landlords: LandlordItem[];
 };
 
 const PcLandlordListTemplate: React.FC<PcLandlordListProps> = ({
   landlords,
+  resultSet,
 }) => {
   return (
     <>

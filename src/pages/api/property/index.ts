@@ -1,42 +1,18 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { createRouter } from "next-connect";
 
-import { Property, Landlord } from "@/server/models";
+import { Property } from "@/server/models";
+import { count } from "console";
+import { searchPropertiesPresent } from "@/server/presentation/property.present";
+import { fetchProperties } from "@/server/infrastructure/repositories/property.repo";
 
 const router = createRouter<NextApiRequest, NextApiResponse>();
 
 router.get(async (req: NextApiRequest, res: NextApiResponse) => {
   // TODO pagination
-  const offset = 0;
-  const limit = 10;
-  const where = {};
-  const { count, rows } = await Property.findAndCountAll({
-    attributes: ["id", "title", "description", "address", "landlordId"],
-    // include: [Landlord.associations.properties],
-    // include: [{ model: Landlord, attributes: ["name", "email", "mobile"] }],
-    where,
-    offset,
-    limit,
-    raw: true,
-  });
+  const result = await fetchProperties();
 
-  if (!count) {
-    return res.json({ resultSet: { offset, limit, total: 0 } });
-  }
-
-  res.json({
-    resultSet: { offset, limit, total: count },
-    properties: rows.map((row) => ({
-      id: row.id,
-      title: row.title,
-      description: row.description,
-      address: row.address,
-      // landlordId: row.landlordId,
-      // landlordName: row["landlord.name"],
-      // landlordEmail: row["landlord.email"],
-      // landlordMobile: row["landlord.mobile"],
-    })),
-  });
+  res.json(searchPropertiesPresent(result));
 });
 
 router.post(async (req: NextApiRequest, res: NextApiResponse) => {

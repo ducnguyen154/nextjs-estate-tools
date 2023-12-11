@@ -1,22 +1,25 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { createRouter } from "next-connect";
-import { Landlord } from "@/server/models";
+import {
+  findLandlordById,
+  putLandlord,
+} from "@/server/infrastructure/repositories/landlord.repo";
 
 const router = createRouter<NextApiRequest, NextApiResponse>();
 
 router.get(async (req: NextApiRequest, res: NextApiResponse) => {
   const { id } = req.query;
-  const landlord = await Landlord.findByPk(id as string);
+  const landlord = await findLandlordById(id as string);
 
-  res.json({ status: "OK", landlord });
+  res.json({ landlord });
 });
 
 router.put(async (req: NextApiRequest, res: NextApiResponse) => {
   const { id } = req.query;
   const { landlord } = req.body;
 
-  await Landlord.update(landlord, { where: { id } });
-  res.json({ status: "OK" });
+  await putLandlord(id as string, landlord);
+  res.status(204).json({ status: "OK" });
 });
 
 export default router.handler({

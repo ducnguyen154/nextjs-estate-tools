@@ -1,5 +1,7 @@
 import axios from "axios";
 
+export const FETCH_LANDLORDS_KEY = ["fetchLandlords"];
+
 /**
  * Get list of landlord
  * @returns
@@ -7,9 +9,7 @@ import axios from "axios";
 export async function fetchLandlords() {
   const { data } = await axios.get("/api/landlord");
 
-  console.log("===>", data);
-
-  return data.landlords;
+  return data;
 }
 
 /**

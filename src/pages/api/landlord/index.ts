@@ -1,25 +1,27 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { createRouter } from "next-connect";
 
-import {Landlord} from "@/server/models/Landlord";
+import {
+  postLandlord,
+  searchLandlords,
+} from "@/server/infrastructure/repositories/landlord.repo";
+import { searchLandlordsPresent } from "@/server/presentation/landlord.present";
 
 const router = createRouter<NextApiRequest, NextApiResponse>();
 
 router.get(async (req: NextApiRequest, res: NextApiResponse) => {
-  // TODO
-  const { count, rows } = await Landlord.findAndCountAll();
-  const landlords = rows.map(row => ({
-    id: row.id,
-    name: row.name,
-  }))
-  res.json({ error: false, landlords });
+  // TODO validation
+  const result = await searchLandlords();
+
+  res.json(searchLandlordsPresent(result));
 });
 
 router.post(async (req: NextApiRequest, res: NextApiResponse) => {
+  // TODO validation
   const { landlord } = req.body;
-  const result = await Landlord.create(landlord);
+  await postLandlord(landlord);
 
-  res.json({ result });
+  res.status(201).json({ status: "ok" });
 });
 
 export default router.handler({
